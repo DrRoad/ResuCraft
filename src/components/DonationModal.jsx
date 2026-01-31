@@ -14,7 +14,7 @@ const DonationModal = ({ isOpen, onClose }) => {
         const amount = customAmount || selectedAmount;
         // In a real implementation, this would integrate with a payment processor
         // For now, we'll open Buy Me a Coffee link
-        const buyMeACoffeeUrl = `https://www.buymeacoffee.com/YOUR_USERNAME?amount=${amount}`;
+        const buyMeACoffeeUrl = `https://www.buymeacoffee.com/drroad?amount=${amount}`;
 
         // Show thank you message
         setShowThankYou(true);
@@ -68,8 +68,8 @@ const DonationModal = ({ isOpen, onClose }) => {
                                             setCustomAmount('');
                                         }}
                                         className={`py-3 px-4 rounded-lg font-semibold transition-all ${selectedAmount === amount && !customAmount
-                                                ? 'bg-amber-500 text-white shadow-md scale-105'
-                                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                            ? 'bg-amber-500 text-white shadow-md scale-105'
+                                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                                             }`}
                                     >
                                         ${amount}
