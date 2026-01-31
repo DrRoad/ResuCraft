@@ -1,12 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { Printer, Download, Upload, Save, FileJson, Trash2 } from 'lucide-react';
+import { Printer, Download, Upload, Save, FileJson, Trash2, Coffee } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import Editor from './components/Editor';
 import ResumePreview from './components/ResumePreview';
+import DonationModal from './components/DonationModal';
 import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
+  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [resumeData, setResumeData] = useLocalStorage('resumeData', {
     theme: {
       color: '#0f172a', // Slate-900
@@ -196,6 +198,15 @@ function App() {
             </button>
             <div className="h-6 w-px bg-slate-300 mx-2"></div>
             <button
+              onClick={() => setIsDonationModalOpen(true)}
+              className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-3 py-2 rounded-md font-medium transition-colors shadow-sm"
+              title="Support ResuCraft"
+            >
+              <Coffee size={18} />
+              <span className="hidden sm:inline">Donate</span>
+            </button>
+            <div className="h-6 w-px bg-slate-300 mx-2"></div>
+            <button
               onClick={handlePrint}
               className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md font-medium transition-colors shadow-sm"
             >
@@ -225,6 +236,10 @@ function App() {
         </div>
       </main>
       <Toaster position="bottom-right" />
+      <DonationModal
+        isOpen={isDonationModalOpen}
+        onClose={() => setIsDonationModalOpen(false)}
+      />
     </div>
   );
 }
